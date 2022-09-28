@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        // Webpack doesn't recognize .jsx without extension
+        // Can maybe configure it with resolve object
+        "import/extensions": 0,
+        // Odin project wants all classes for project
+        "react/prefer-stateless-function": 0
+    }
+}

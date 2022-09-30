@@ -10,6 +10,12 @@ class Edit extends React.Component {
       email: '',
       phone: '',
       phoneType: 'cell',
+      /* holds array of objects of the form:
+        {
+          number: Number,
+          type: (cell|home|work|other),
+        }
+      */
       phoneList: [],
     };
 
@@ -18,6 +24,7 @@ class Edit extends React.Component {
     this.phoneInputChanged = this.phoneInputChanged.bind(this);
     this.phoneTypeChanged = this.phoneTypeChanged.bind(this);
     this.addPhone = this.addPhone.bind(this);
+    this.removeNumber = this.removeNumber.bind(this);
   }
 
   nameChanged(e) {
@@ -50,12 +57,41 @@ class Edit extends React.Component {
 
   addPhone() {
     console.log('add phone');
+    const { phone, phoneType } = this.state;
+    const newPhone = {
+      number: phone,
+      type: phoneType,
+    };
+
+    this.setState((prevState) => (
+      { phoneList: prevState.phoneList.concat(newPhone) }
+    ), () => {
+      const { phoneList } = this.state;
+      console.log('phone list');
+      console.log(phoneList);
+    });
+  }
+
+  removeNumber() {
+    console.log('remove number');
+  }
+
+  getPhoneListElements() {
+    const { phoneList } = this.state;
+    return phoneList.map((number) => (
+      <li>
+        <span>{number.number}</span>
+        <span>{number.type}</span>
+        <button type="button" onClick={this.removeNumber}>Remove</button>
+      </li>
+    ));
   }
 
   render() {
     const {
       name, email, phone, phoneType,
     } = this.state;
+
     return (
       <fieldset className={styles.contactInfo}>
         <legend>Contact Information</legend>
@@ -79,6 +115,11 @@ class Edit extends React.Component {
             <option value="other">Other</option>
           </select>
           <button type="button" onClick={this.addPhone}>Add</button>
+          <div className="added-numbers">
+            <ul className="numbers-list">
+              { this.getPhoneListElements() }
+            </ul>
+          </div>
         </div>
       </fieldset>
     );

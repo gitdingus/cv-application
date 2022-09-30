@@ -1,9 +1,14 @@
 import React from 'react';
+import ContactInfo from './contact-info/ContactInfo.jsx';
 
 class App extends React.Component {
   render() {
     return (
-      <h1>Hello App!</h1>
+      <div>
+        <h1>Hello App!</h1>
+        <ContactInfo />
+      </div>
+
     );
   }
 }

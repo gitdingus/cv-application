@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuid } from 'uuid';
 import styles from './edit.module.css';
 
 class Edit extends React.Component {
@@ -12,6 +13,7 @@ class Edit extends React.Component {
       phoneType: 'cell',
       /* holds array of objects of the form:
         {
+          uuid: uuid,
           number: Number,
           type: (cell|home|work|other),
         }
@@ -59,6 +61,7 @@ class Edit extends React.Component {
     console.log('add phone');
     const { phone, phoneType } = this.state;
     const newPhone = {
+      uuid: uuid(),
       number: phone,
       type: phoneType,
     };
@@ -72,17 +75,22 @@ class Edit extends React.Component {
     });
   }
 
-  removeNumber() {
+  removeNumber(numberUuid) {
     console.log('remove number');
+    this.setState((prevState) => (
+      {
+        phoneList: prevState.phoneList.filter((number) => number.uuid !== numberUuid),
+      }
+    ));
   }
 
   getPhoneListElements() {
     const { phoneList } = this.state;
     return phoneList.map((number) => (
-      <li>
+      <li key={number.uuid}>
         <span>{number.number}</span>
         <span>{number.type}</span>
-        <button type="button" onClick={this.removeNumber}>Remove</button>
+        <button type="button" onClick={() => this.removeNumber(number.uuid)}>Remove</button>
       </li>
     ));
   }

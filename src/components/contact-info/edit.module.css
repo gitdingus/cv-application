@@ -1,0 +1,10 @@
+.contactInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.contactInfo label span{
+  margin-right: 12px;
+}

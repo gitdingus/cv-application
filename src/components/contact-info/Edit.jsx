@@ -99,8 +99,7 @@ class Edit extends React.Component {
     } = this.state;
 
     return (
-      <fieldset>
-        <legend>Contact Information</legend>
+      <div>
         <div className={styles.contactInfo}>
           <label htmlFor="name">Name:</label>
           <input id="name" type="text" onChange={this.nameChanged} value={name} />
@@ -122,7 +121,7 @@ class Edit extends React.Component {
           </div>
         </div>
         <button type="button" onClick={this.submit}>Done</button>
-      </fieldset>
+      </div>
     );
   }
 }

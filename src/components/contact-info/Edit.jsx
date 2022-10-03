@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
 import styles from './edit.module.css';
 
@@ -125,5 +126,25 @@ class Edit extends React.Component {
     );
   }
 }
+
+Edit.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+  phoneList: PropTypes.arrayOf(
+    PropTypes.shape({
+      uuid: PropTypes.string,
+      number: PropTypes.string,
+      type: PropTypes.string,
+    }),
+  ),
+  updateContactInfo: PropTypes.func,
+};
+
+Edit.defaultProps = {
+  name: '',
+  email: '',
+  phoneList: [],
+  updateContactInfo: () => {},
+};
 
 export default Edit;

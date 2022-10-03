@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './display.css';
 
 class Display extends React.Component {
@@ -41,5 +42,25 @@ class Display extends React.Component {
     );
   }
 }
+
+Display.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+  phoneList: PropTypes.arrayOf(
+    PropTypes.shape({
+      uuid: PropTypes.string,
+      number: PropTypes.string,
+      type: PropTypes.string,
+    }),
+  ),
+  edit: PropTypes.func,
+};
+
+Display.defaultProps = {
+  name: '',
+  email: '',
+  phoneList: [],
+  edit: () => {},
+};
 
 export default Display;

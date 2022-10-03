@@ -6,9 +6,10 @@ class Edit extends React.Component {
   constructor(props) {
     super(props);
 
+    const { name, email, phoneList } = this.props;
     this.state = {
-      name: '',
-      email: '',
+      name,
+      email,
       phone: '',
       phoneType: 'cell',
       /* holds array of objects of the form:
@@ -18,7 +19,7 @@ class Edit extends React.Component {
           type: (cell|home|work|other),
         }
       */
-      phoneList: [],
+      phoneList,
     };
 
     this.nameChanged = this.nameChanged.bind(this);
@@ -27,6 +28,7 @@ class Edit extends React.Component {
     this.phoneTypeChanged = this.phoneTypeChanged.bind(this);
     this.addPhone = this.addPhone.bind(this);
     this.removeNumber = this.removeNumber.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   getPhoneListElements() {
@@ -95,6 +97,11 @@ class Edit extends React.Component {
     ));
   }
 
+  submit() {
+    const { updateContactInfo } = this.props;
+    updateContactInfo(this.state);
+  }
+
   render() {
     const {
       name, email, phone, phoneType,
@@ -123,6 +130,7 @@ class Edit extends React.Component {
             </ul>
           </div>
         </div>
+        <button type="button" onClick={this.submit}>Done</button>
       </fieldset>
     );
   }

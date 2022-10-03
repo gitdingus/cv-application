@@ -1,6 +1,6 @@
 import React from 'react';
 import Edit from './Edit.jsx';
-import Display from './Display.jsx'
+import Display from './Display.jsx';
 import styles from './contact-info.css';
 
 class ContactInfo extends React.Component {

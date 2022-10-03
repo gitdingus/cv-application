@@ -22,6 +22,12 @@
         // Can maybe configure it with resolve object
         "import/extensions": 0,
         // Odin project wants all classes for project
-        "react/prefer-stateless-function": 0
+        "react/prefer-stateless-function": 0,
+        "jsx-a11y/label-has-associated-control": [
+        2,
+            {
+            "assert": "either" // either check for `htmlFor` or `nesting`
+            }
+        ]   
     }
 }

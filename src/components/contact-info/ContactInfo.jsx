@@ -1,5 +1,6 @@
 import React from 'react';
 import Edit from './Edit.jsx';
+import Display from './Display.jsx'
 import styles from './contact-info.css';
 
 class ContactInfo extends React.Component {
@@ -13,6 +14,7 @@ class ContactInfo extends React.Component {
       phoneList: [],
     };
 
+    this.enterEditMode = this.enterEditMode.bind(this);
     this.updateContactInfo = this.updateContactInfo.bind(this);
   }
 
@@ -23,6 +25,8 @@ class ContactInfo extends React.Component {
     this.setState({ mode: 'display' });
   }
 
+  enterEditMode() {
+    this.setState({ mode: 'edit' });
   }
 
   render() {
@@ -33,6 +37,9 @@ class ContactInfo extends React.Component {
       mode,
     } = this.state;
 
+    if (mode === 'display') {
+      return <Display name={name} email={email} phoneList={phoneList} edit={this.enterEditMode} />;
+    }
 
     return (
       <Edit

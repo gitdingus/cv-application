@@ -43,35 +43,30 @@ class Edit extends React.Component {
   }
 
   nameChanged(e) {
-    console.log('name changed');
     this.setState({
       name: e.target.value,
     });
   }
 
   emailChanged(e) {
-    console.log('email changed');
     this.setState({
       email: e.target.value,
     });
   }
 
   phoneInputChanged(e) {
-    console.log('phone input changed');
     this.setState({
       phone: e.target.value,
     });
   }
 
   phoneTypeChanged(e) {
-    console.log('phone type changed');
     this.setState({
       phoneType: e.target.value,
     });
   }
 
   addPhone() {
-    console.log('add phone');
     const { phone, phoneType } = this.state;
     const newPhone = {
       uuid: uuid(),
@@ -81,15 +76,10 @@ class Edit extends React.Component {
 
     this.setState((prevState) => (
       { phoneList: prevState.phoneList.concat(newPhone) }
-    ), () => {
-      const { phoneList } = this.state;
-      console.log('phone list');
-      console.log(phoneList);
-    });
+    ));
   }
 
   removeNumber(numberUuid) {
-    console.log('remove number');
     this.setState((prevState) => (
       {
         phoneList: prevState.phoneList.filter((number) => number.uuid !== numberUuid),

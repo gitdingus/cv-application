@@ -29,6 +29,17 @@ class Edit extends React.Component {
     this.removeNumber = this.removeNumber.bind(this);
   }
 
+  getPhoneListElements() {
+    const { phoneList } = this.state;
+    return phoneList.map((number) => (
+      <li key={number.uuid}>
+        <span>{number.number}</span>
+        <span>{number.type}</span>
+        <button type="button" onClick={() => this.removeNumber(number.uuid)}>Remove</button>
+      </li>
+    ));
+  }
+
   nameChanged(e) {
     console.log('name changed');
     this.setState({
@@ -84,38 +95,21 @@ class Edit extends React.Component {
     ));
   }
 
-  getPhoneListElements() {
-    const { phoneList } = this.state;
-    return phoneList.map((number) => (
-      <li key={number.uuid}>
-        <span>{number.number}</span>
-        <span>{number.type}</span>
-        <button type="button" onClick={() => this.removeNumber(number.uuid)}>Remove</button>
-      </li>
-    ));
-  }
-
   render() {
     const {
       name, email, phone, phoneType,
     } = this.state;
 
     return (
-      <fieldset className={styles.contactInfo}>
+      <fieldset>
         <legend>Contact Information</legend>
-        <label htmlFor="name">
-          <span>Name</span>
+        <div className={styles.contactInfo}>
+          <label htmlFor="name">Name:</label>
           <input id="name" type="text" onChange={this.nameChanged} value={name} />
-        </label>
-        <label htmlFor="email">
-          <span>Email</span>
+          <label htmlFor="email">Email:</label>
           <input id="email" type="text" onChange={this.emailChanged} value={email} />
-        </label>
-        <div className="phone-numbers">
-          <label htmlFor="phone">
-            <span>Phone</span>
-            <input id="phone" type="text" onChange={this.phoneInputChanged} value={phone} />
-          </label>
+          <label htmlFor="phone">Phone:</label>
+          <input id="phone" type="text" onChange={this.phoneInputChanged} value={phone} />
           <select id="phone-type" onChange={this.phoneTypeChanged} value={phoneType}>
             <option value="cell">Cell</option>
             <option value="home">Home</option>
@@ -123,8 +117,8 @@ class Edit extends React.Component {
             <option value="other">Other</option>
           </select>
           <button type="button" onClick={this.addPhone}>Add</button>
-          <div className="added-numbers">
-            <ul className="numbers-list">
+          <div className={styles.phoneNumbersList}>
+            <ul>
               { this.getPhoneListElements() }
             </ul>
           </div>

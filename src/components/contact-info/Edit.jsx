@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
+import plusImage from '../plus.svg';
+import trashImage from '../trash-can-outline.svg';
 import styles from './edit.module.css';
 
 class Edit extends React.Component {
@@ -38,7 +40,7 @@ class Edit extends React.Component {
       <li key={number.uuid}>
         <span>{number.number}</span>
         <span>{number.type}</span>
-        <button type="button" onClick={() => this.removeNumber(number.uuid)}>Remove</button>
+        <button type="button" onClick={() => this.removeNumber(number.uuid)}><img src={trashImage} alt="Remove Number" /></button>
       </li>
     ));
   }
@@ -113,7 +115,7 @@ class Edit extends React.Component {
             <option value="work">Work</option>
             <option value="other">Other</option>
           </select>
-          <button type="button" onClick={this.addPhone}>Add</button>
+          <button type="button" onClick={this.addPhone}><img src={plusImage} alt="Add Number" /></button>
           <div className={styles.phoneNumbersList}>
             <ul>
               { this.getPhoneListElements() }

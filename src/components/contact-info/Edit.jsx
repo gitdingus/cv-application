@@ -25,6 +25,8 @@ class Edit extends React.Component {
       phoneList,
     };
 
+    this.phoneNumberInput = React.createRef();
+
     this.nameChanged = this.nameChanged.bind(this);
     this.emailChanged = this.emailChanged.bind(this);
     this.phoneInputChanged = this.phoneInputChanged.bind(this);
@@ -84,6 +86,8 @@ class Edit extends React.Component {
         phoneList: prevState.phoneList.concat(newPhone) 
       }
     ));
+
+    this.phoneNumberInput.current.focus();
   }
 
   removeNumber(numberUuid) {
@@ -112,7 +116,7 @@ class Edit extends React.Component {
           <label htmlFor="email">Email:</label>
           <input id="email" type="text" onChange={this.emailChanged} value={email} />
           <label htmlFor="phone">Phone:</label>
-          <input id="phone" type="text" onChange={this.phoneInputChanged} value={phone} />
+          <input id="phone" type="text" ref={this.phoneNumberInput} onChange={this.phoneInputChanged} value={phone} />
           <select id="phone-type" onChange={this.phoneTypeChanged} value={phoneType}>
             <option value="cell">Cell</option>
             <option value="home">Home</option>

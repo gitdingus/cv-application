@@ -1,7 +1,7 @@
 import React from 'react';
 import Edit from './Edit.jsx';
 import Display from './Display.jsx';
-import styles from './contact-info.css';
+import styles from './contact-info.module.css';
 
 class ContactInfo extends React.Component {
   constructor(props) {
@@ -38,16 +38,24 @@ class ContactInfo extends React.Component {
     } = this.state;
 
     if (mode === 'display') {
-      return <Display name={name} email={email} phoneList={phoneList} edit={this.enterEditMode} />;
+      return (
+        <div className={styles.contactInfo}>
+          <h1>Contact Information</h1>
+          <Display name={name} email={email} phoneList={phoneList} edit={this.enterEditMode} />
+        </div>
+      );
     }
 
     return (
-      <Edit
-        name={name}
-        email={email}
-        phoneList={phoneList}
-        updateContactInfo={this.updateContactInfo}
-      />
+      <div className={styles.contactInfo}>
+        <h1>Contact Information</h1>
+        <Edit
+          name={name}
+          email={email}
+          phoneList={phoneList}
+          updateContactInfo={this.updateContactInfo}
+        />
+      </div>
     );
   }
 }

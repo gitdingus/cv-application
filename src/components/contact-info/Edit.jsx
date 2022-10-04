@@ -78,7 +78,11 @@ class Edit extends React.Component {
     };
 
     this.setState((prevState) => (
-      { phoneList: prevState.phoneList.concat(newPhone) }
+      {
+        phone: '',
+        phoneType: 'cell',
+        phoneList: prevState.phoneList.concat(newPhone) 
+      }
     ));
   }
 

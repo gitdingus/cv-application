@@ -1,0 +1,24 @@
+.displayPane .contactInfo {
+  padding: 20px 50px;
+}
+.displayPane .infoItem{
+  display: flex;
+  gap: 8px;
+  margin: 13px;
+}
+
+.displayPane .infoItem p{
+  margin: 0;
+}
+
+.displayPane .infoItem p:first-child{
+  width: 100px;
+  text-align: right;
+  text-transform: capitalize;
+  font-size: 16px;
+  align-self: center;
+}
+
+.displayPane .infoItem p:nth-child(2){
+  font-size: 18px;
+}

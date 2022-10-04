@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './display.css';
+import styles from './display.module.css';
 
 class Display extends React.Component {
   constructor(props) {
@@ -17,26 +17,30 @@ class Display extends React.Component {
   render() {
     const { name, email, phoneList } = this.props;
     return (
-      <div>
-        <p>
-          Name:
-          {name}
-        </p>
-        <p>
-          Email:
-          {email}
-        </p>
-        <p>Phone:</p>
-        <ul>
-          {
-            phoneList.map((number) => (
-              <li key={number.uuid}>
-                <span>{number.number}</span>
-                <span>{number.type}</span>
-              </li>
-            ))
-          }
-        </ul>
+      <div className={styles.displayPane}>
+        <div className={styles.contactInfo}>
+          <div className={styles.infoItem}>
+            <p>Name:</p>
+            <p className={styles.name}>{name}</p>
+          </div>
+          <div className={styles.infoItem}>
+            <p>Email:</p>
+            <p className={styles.email}>{email}</p>
+          </div>
+          <div>
+            {
+              phoneList.map((number) => (
+                <div className={styles.infoItem} key={number.uuid}>
+                  <p>
+                    {`${number.type} `}
+                    Phone:
+                  </p>
+                  <p>{number.number}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
         <button type="button" onClick={this.edit}>Edit</button>
       </div>
     );

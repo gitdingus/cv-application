@@ -1,7 +1,7 @@
 .editContactInfo{
   display: grid;
   gap: 13px;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: 100px 1fr auto auto;
 
   align-items: center;
   padding: 20px 50px;

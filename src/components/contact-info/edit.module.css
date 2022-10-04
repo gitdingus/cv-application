@@ -1,9 +1,12 @@
 .contactInfo{
+  border: 1px solid black;
   display: grid;
   gap: 13px;
   grid-template-columns: auto 1fr auto auto;
+
   align-items: center;
-  width: min(65%, 750px);
+  padding: 20px 50px;
+  width: clamp(450px, 65%, 650px);
 }
 
 .contactInfo label{
@@ -31,6 +34,16 @@
 
 .contactInfo button {
   grid-column: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+.contactInfo button img {
+  width: 22px;
 }
 
 .phoneNumbersList {
@@ -39,5 +52,11 @@
 
 .phoneNumbersList li {
   display: grid;
+  align-items: center;
   grid-template-columns: repeat(3, auto);
 }
+
+.phoneNumbersList li * {
+  border: 1px solid black;
+}
+

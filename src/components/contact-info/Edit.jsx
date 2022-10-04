@@ -38,9 +38,9 @@ class Edit extends React.Component {
     const { phoneList } = this.state;
     return phoneList.map((number) => (
       <li key={number.uuid}>
-        <span>{number.number}</span>
-        <span>{number.type}</span>
-        <button type="button" onClick={() => this.removeNumber(number.uuid)}><img src={trashImage} alt="Remove Number" /></button>
+        <span className={styles.type}>{number.type}</span>
+        <span className={styles.number}>{number.number}</span>
+        <button className={styles.button} type="button" onClick={() => this.removeNumber(number.uuid)}><img src={trashImage} alt="Remove Number" /></button>
       </li>
     ));
   }
@@ -102,7 +102,7 @@ class Edit extends React.Component {
 
     return (
       <div>
-        <div className={styles.contactInfo}>
+        <div className={styles.editContactInfo}>
           <label htmlFor="name">Name:</label>
           <input id="name" type="text" onChange={this.nameChanged} value={name} />
           <label htmlFor="email">Email:</label>

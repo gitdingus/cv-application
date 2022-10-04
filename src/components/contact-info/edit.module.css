@@ -1,5 +1,4 @@
-.contactInfo{
-  border: 1px solid black;
+.editContactInfo{
   display: grid;
   gap: 13px;
   grid-template-columns: auto 1fr auto auto;
@@ -9,21 +8,22 @@
   width: clamp(450px, 65%, 650px);
 }
 
-.contactInfo label{
+.editContactInfo label{
   grid-column: 1 / 2;
   text-align: right;
+  align-self: end;
 }
 
-.contactInfo input{
+.editContactInfo input{
   grid-column: 2 / 3;
 }
 
-.contactInfo select {
+.editContactInfo select {
   grid-column: 3 / 4;
 }
 
-.contactInfo input,
-.contactInfo select {
+.editContactInfo input,
+.editContactInfo select {
   background-color: white;
   border: 0;
   box-shadow: 1px 1px 2px black;
@@ -32,7 +32,7 @@
   padding: 8px 16px;
 }
 
-.contactInfo button {
+.editContactInfo button {
   grid-column: 4 / 5;
   display: flex;
   align-items: center;
@@ -42,7 +42,7 @@
   border: 0;
 }
 
-.contactInfo button img {
+.editContactInfo button img {
   width: 22px;
 }
 
@@ -50,13 +50,24 @@
   grid-column: 2 / 3;
 }
 
-.phoneNumbersList li {
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(3, auto);
+.phoneNumbersList ul {
+  padding: 0;
 }
 
-.phoneNumbersList li * {
-  border: 1px solid black;
+.phoneNumbersList li {
+  display: grid;
+  grid-template-columns: 75px 1fr 30px;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.phoneNumbersList li .type {
+  text-transform: capitalize;
+}
+
+.phoneNumbersList li .button {
+  margin-left: auto;
 }
 

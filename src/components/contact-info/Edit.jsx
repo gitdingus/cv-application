@@ -223,7 +223,8 @@ class Edit extends React.Component {
             type="tel"
             ref={this.phoneNumberInput}
             onChange={this.phoneInputChanged}
-            onBlur={this.inputBlur} value={phone}
+            onBlur={this.inputBlur}
+            value={phone}
             pattern="^[(]*\d{3}[)]*\d{3}-*\d{4}$"
             required
           />

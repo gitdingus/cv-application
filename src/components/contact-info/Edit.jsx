@@ -23,8 +23,14 @@ class Edit extends React.Component {
         }
       */
       phoneList,
+      containsNumber: true, // set true to hide error until trying to submit
+      invalidName: false,
+      invalidEmail: false,
+      invalidPhone: false,
     };
 
+    this.nameInput = React.createRef();
+    this.emailInput = React.createRef();
     this.phoneNumberInput = React.createRef();
 
     this.nameChanged = this.nameChanged.bind(this);
@@ -48,18 +54,36 @@ class Edit extends React.Component {
   }
 
   nameChanged(e) {
+    if (e.target.checkValidity() === true) {
+      this.setState({
+        invalidName: false,
+      });
+    }
+
     this.setState({
       name: e.target.value,
     });
   }
 
   emailChanged(e) {
+    if (e.target.checkValidity() === true) {
+      this.setState({
+        invalidEmail: false,
+      });
+    }
+
     this.setState({
       email: e.target.value,
     });
   }
 
   phoneInputChanged(e) {
+    if (e.target.checkValidity() === true) {
+      this.setState({
+        invalidPhone: false,
+      });
+    }
+
     this.setState({
       phone: e.target.value,
     });
@@ -73,6 +97,15 @@ class Edit extends React.Component {
 
   addPhone() {
     const { phone, phoneType } = this.state;
+
+    if (this.phoneNumberInput.current.checkValidity() !== true) {
+      this.setState({
+        invalidPhone: true,
+      });
+
+      return;
+    }
+
     const newPhone = {
       uuid: uuid(),
       number: phone,
@@ -83,7 +116,9 @@ class Edit extends React.Component {
       {
         phone: '',
         phoneType: 'cell',
-        phoneList: prevState.phoneList.concat(newPhone) 
+        phoneList: prevState.phoneList.concat(newPhone),
+        containsNumber: true,
+        invalidPhone: false,
       }
     ));
 
@@ -100,23 +135,98 @@ class Edit extends React.Component {
 
   submit() {
     const { updateContactInfo } = this.props;
+    const { phoneList } = this.state;
+    if (this.nameInput.current.checkValidity() !== true) {
+      this.setState({
+        invalidName: true,
+      });
+      return;
+    }
+
+    if (this.emailInput.current.checkValidity() !== true) {
+      this.setState({
+        invalidEmail: true,
+      });
+      return;
+    }
+
+    if (phoneList.length <= 0) {
+      this.setState({
+        containsNumber: false,
+      });
+      return;
+    }
+
     updateContactInfo(this.state);
   }
 
   render() {
     const {
-      name, email, phone, phoneType,
+      name,
+      email,
+      phone,
+      phoneType,
+      containsNumber,
+      invalidName,
+      invalidEmail,
+      invalidPhone,
     } = this.state;
 
     return (
       <div>
-        <div className={styles.editContactInfo}>
+        <form className={styles.editContactInfo}>
           <label htmlFor="name">Name:</label>
-          <input id="name" type="text" onChange={this.nameChanged} value={name} />
+          <input
+            id="name"
+            type="text"
+            ref={this.nameInput}
+            onChange={this.nameChanged}
+            onBlur={this.inputBlur}
+            value={name}
+            required
+          />
+          <div
+            className={
+              `
+                ${styles.name}
+                ${styles.error}
+                ${(invalidName === true) ? styles.active : ''}
+              `
+            }
+          >
+            Name is a required field
+          </div>
           <label htmlFor="email">Email:</label>
-          <input id="email" type="text" onChange={this.emailChanged} value={email} />
+          <input
+            id="email"
+            type="email"
+            ref={this.emailInput}
+            onChange={this.emailChanged}
+            onBlur={this.inputBlur}
+            value={email}
+            required
+          />
+          <div
+            className={
+              `
+                ${styles.email} 
+                ${styles.error}
+                ${(invalidEmail === true) ? styles.active : ''}
+              `
+            }
+          >
+            A valid email address is required
+          </div>
           <label htmlFor="phone">Phone:</label>
-          <input id="phone" type="text" ref={this.phoneNumberInput} onChange={this.phoneInputChanged} value={phone} />
+          <input
+            id="phone"
+            type="tel"
+            ref={this.phoneNumberInput}
+            onChange={this.phoneInputChanged}
+            onBlur={this.inputBlur} value={phone}
+            pattern="^[(]*\d{3}[)]*\d{3}-*\d{4}$"
+            required
+          />
           <select id="phone-type" onChange={this.phoneTypeChanged} value={phoneType}>
             <option value="cell">Cell</option>
             <option value="home">Home</option>
@@ -124,12 +234,37 @@ class Edit extends React.Component {
             <option value="other">Other</option>
           </select>
           <button type="button" onClick={this.addPhone}><img src={plusImage} alt="Add Number" /></button>
+          <div
+            className={
+              `
+                ${styles.phoneInput}
+                ${styles.error}
+                ${(invalidPhone === true) ? styles.active : ''}
+              `
+            }
+          >
+            Must provide valid 10-digit phone number. (xxx)xxx-xxxx
+            <br />
+            *Parenthesis and hyphens not required
+          </div>
           <div className={styles.phoneNumbersList}>
             <ul>
               { this.getPhoneListElements() }
             </ul>
           </div>
-        </div>
+          <div
+            className={
+              `
+                ${styles.phoneNumbers} 
+                ${styles.error}
+                ${(containsNumber === false) ? styles.active : ''}
+              `
+            }
+          >
+            Must provide at least one phone number
+          </div>
+
+        </form>
         <button type="button" onClick={this.submit}>Done</button>
       </div>
     );

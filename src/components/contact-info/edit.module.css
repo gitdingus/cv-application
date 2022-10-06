@@ -18,6 +18,10 @@
   grid-column: 2 / 3;
 }
 
+.editContactInfo input:invalid {
+  outline: 1px solid red; 
+}
+
 .editContactInfo select {
   grid-column: 3 / 4;
 }
@@ -32,7 +36,7 @@
   padding: 8px 16px;
 }
 
-.editContactInfo button {
+.editContactInfo > button {
   grid-column: 4 / 5;
   display: flex;
   align-items: center;
@@ -44,6 +48,19 @@
 
 .editContactInfo button img {
   width: 22px;
+}
+
+.editContactInfo .error{
+  grid-column: 2 / 6;
+  color: rgba(255, 0, 0, 1);
+  font-size: 14px;
+  margin-left: 18px;
+  display: none;
+
+}
+
+.editContactInfo .error.active{
+  display: block;
 }
 
 .phoneNumbersList {
@@ -67,7 +84,7 @@
   text-transform: capitalize;
 }
 
-.phoneNumbersList li .button {
-  margin-left: auto;
+.phoneNumbersList li button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
 }
-

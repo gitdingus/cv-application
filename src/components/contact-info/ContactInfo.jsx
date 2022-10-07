@@ -39,16 +39,16 @@ class ContactInfo extends React.Component {
 
     if (mode === 'display') {
       return (
-        <div className={styles.contactInfo}>
-          <h1>Contact Information</h1>
+        <div className="cv-section">
+          <h1 className="cv-section-header">Contact Information</h1>
           <Display name={name} email={email} phoneList={phoneList} edit={this.enterEditMode} />
         </div>
       );
     }
 
     return (
-      <div className={styles.contactInfo}>
-        <h1>Contact Information</h1>
+      <div className={`cv-section ${styles.contactInfo}`}>
+        <h1 className="cv-section-header">Contact Information</h1>
         <Edit
           name={name}
           email={email}

@@ -24,7 +24,8 @@ class EducationExperience extends React.Component {
   render() {
     const { eduList } = this.state;
     return (
-      <div>
+      <div className="cv-section">
+        <h1 className="cv-section-header">Education Experience</h1>
         <Edit addEducationExperience={this.addEducationExperience} />
         <Display eduList={eduList} />
       </div>

@@ -43,14 +43,14 @@ class Edit extends React.Component {
     } = this.state;
     return (
       <div>
-        <form>
-          <label htmlFor="university">School/University</label>
+        <form className={styles.educationForm}>
+          <label htmlFor="university">School/University:</label>
           <input id="university" type="text" value={university} onChange={(e) => this.inputChanged('university', e.target)} />
-          <label htmlFor="area-of-study">Area of Study</label>
+          <label htmlFor="area-of-study">Area of Study:</label>
           <input id="area-of-study" type="text" value={areaOfStudy} onChange={(e) => this.inputChanged('areaOfStudy', e.target)} />
-          <label htmlFor="degree-earned">Degree Earned</label>
+          <label htmlFor="degree-earned">Degree Earned:</label>
           <input id="degree-earned" type="text" value={degreeEarned} onChange={(e) => this.inputChanged('degreeEarned', e.target)} />
-          <label htmlFor="date-acquired">Date Acquired</label>
+          <label htmlFor="date-acquired">Date Acquired:</label>
           <input id="date-acquired" type="text" value={dateAcquired} onChange={(e) => this.inputChanged('dateAcquired', e.target)} />
           <button type="button" onClick={this.addClicked}>Add Education Experience</button>
         </form>

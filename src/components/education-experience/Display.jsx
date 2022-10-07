@@ -13,6 +13,11 @@ class Display extends React.Component {
           {
             eduList.map((eduItem) => {
               const {
+                edit,
+                remove,
+              } = this.props;
+              const {
+                uuid,
                 university,
                 areaOfStudy,
                 degreeEarned,
@@ -20,13 +25,13 @@ class Display extends React.Component {
               } = eduItem;
 
               return (
-                <li className={styles.educationItem}>
+                <li className={styles.educationItem} key={uuid}>
                   <p>{dateAcquired}</p>
                   <p>{university}</p>
                   <p>{areaOfStudy}</p>
                   <p>{degreeEarned}</p>
-                  <button className="svg-button" type="button"><img src={editButton} alt="Edit Item" /></button>
-                  <button className="svg-button" type="button"><img src={deleteButton} alt="Remove Item" /></button>
+                  <button className="svg-button" type="button" onClick={() => edit(uuid)}><img src={editButton} alt="Edit Item" /></button>
+                  <button className="svg-button" type="button" onClick={() => remove(uuid)}><img src={deleteButton} alt="Remove Item" /></button>
                 </li>
               );
             })
@@ -44,13 +49,17 @@ Display.propTypes = {
       university: PropTypes.string,
       areaOfStudy: PropTypes.string,
       degreeEarned: PropTypes.string,
-      dateAcquired: PropTypes.instanceOf(Date),
+      dateAcquired: PropTypes.string, // change to date later
     }),
   ),
+  remove: PropTypes.func,
+  edit: PropTypes.func,
 };
 
 Display.defaultProps = {
   eduList: [],
+  remove: () => {},
+  edit: () => {},
 };
 
 export default Display;

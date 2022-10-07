@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import editButton from '../edit.svg';
+import deleteButton from '../trash-can-outline.svg';
+import styles from './display.module.css';
 
 class Display extends React.Component {
   render() {
@@ -17,11 +20,13 @@ class Display extends React.Component {
               } = eduItem;
 
               return (
-                <li>
+                <li className={styles.educationItem}>
                   <p>{dateAcquired}</p>
                   <p>{university}</p>
                   <p>{areaOfStudy}</p>
                   <p>{degreeEarned}</p>
+                  <button className="svg-button" type="button"><img src={editButton} alt="Edit Item" /></button>
+                  <button className="svg-button" type="button"><img src={deleteButton} alt="Remove Item" /></button>
                 </li>
               );
             })

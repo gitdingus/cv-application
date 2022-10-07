@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './edit.module.css';
 
 class Edit extends React.Component {
   constructor(props) {

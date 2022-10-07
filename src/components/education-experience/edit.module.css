@@ -1,0 +1,18 @@
+.educationForm {
+  display: grid;
+  gap: 13px;
+  grid-template-columns: 150px auto;
+
+  align-items: end;
+  width: clamp(450px, 60%, 650px);
+}
+
+.educationForm label{
+  text-align: right;
+}
+
+.educationForm button {
+  grid-column: 2 / 3;
+
+  padding: 5px 20px;
+}

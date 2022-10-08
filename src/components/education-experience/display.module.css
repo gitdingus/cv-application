@@ -3,4 +3,5 @@
   grid-template-columns: 75px 1fr 1fr 125px 25px 25px;
   gap: 10px;
   width: clamp(450px, 60%, 750px);
+  margin: 0 auto;
 }

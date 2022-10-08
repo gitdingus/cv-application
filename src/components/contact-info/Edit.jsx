@@ -188,7 +188,6 @@ class Edit extends React.Component {
           <div
             className={
               `
-                ${styles.name}
                 ${styles.error}
                 ${(invalidName === true) ? styles.active : ''}
               `
@@ -209,7 +208,6 @@ class Edit extends React.Component {
           <div
             className={
               `
-                ${styles.email} 
                 ${styles.error}
                 ${(invalidEmail === true) ? styles.active : ''}
               `
@@ -238,7 +236,6 @@ class Edit extends React.Component {
           <div
             className={
               `
-                ${styles.phoneInput}
                 ${styles.error}
                 ${(invalidPhone === true) ? styles.active : ''}
               `

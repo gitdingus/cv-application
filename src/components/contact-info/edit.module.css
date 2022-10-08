@@ -4,7 +4,6 @@
   grid-template-columns: 100px 1fr auto auto;
 
   align-items: center;
-  padding: 20px 50px;
   width: clamp(450px, 65%, 650px);
 }
 
@@ -18,36 +17,12 @@
   grid-column: 2 / 3;
 }
 
-.editContactInfo input:invalid {
-  outline: 1px solid red; 
-}
-
 .editContactInfo select {
   grid-column: 3 / 4;
 }
 
-.editContactInfo input,
-.editContactInfo select {
-  background-color: white;
-  border: 0;
-  box-shadow: 1px 1px 2px black;
-  border-radius: 4px;
-  font-size: 16px;
-  padding: 8px 16px;
-}
-
 .editContactInfo > button {
   grid-column: 4 / 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: rgba(0, 0, 0, 0);
-  border: 0;
-}
-
-.editContactInfo button img {
-  width: 22px;
 }
 
 .editContactInfo .error{
@@ -82,9 +57,4 @@
 
 .phoneNumbersList li .type {
   text-transform: capitalize;
-}
-
-.phoneNumbersList li button {
-  background-color: rgba(0, 0, 0, 0);
-  border: 0;
 }

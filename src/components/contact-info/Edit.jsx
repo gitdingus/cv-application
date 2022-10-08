@@ -48,7 +48,7 @@ class Edit extends React.Component {
       <li key={number.uuid}>
         <span className={styles.type}>{number.type}</span>
         <span className={styles.number}>{number.number}</span>
-        <button className={styles.button} type="button" onClick={() => this.removeNumber(number.uuid)}><img src={trashImage} alt="Remove Number" /></button>
+        <button className="svg-button" type="button" onClick={() => this.removeNumber(number.uuid)}><img src={trashImage} alt="Remove Number" /></button>
       </li>
     ));
   }
@@ -188,7 +188,6 @@ class Edit extends React.Component {
           <div
             className={
               `
-                ${styles.name}
                 ${styles.error}
                 ${(invalidName === true) ? styles.active : ''}
               `
@@ -209,7 +208,6 @@ class Edit extends React.Component {
           <div
             className={
               `
-                ${styles.email} 
                 ${styles.error}
                 ${(invalidEmail === true) ? styles.active : ''}
               `
@@ -234,11 +232,10 @@ class Edit extends React.Component {
             <option value="work">Work</option>
             <option value="other">Other</option>
           </select>
-          <button type="button" onClick={this.addPhone}><img src={plusImage} alt="Add Number" /></button>
+          <button className="svg-button" type="button" onClick={this.addPhone}><img src={plusImage} alt="Add Number" /></button>
           <div
             className={
               `
-                ${styles.phoneInput}
                 ${styles.error}
                 ${(invalidPhone === true) ? styles.active : ''}
               `

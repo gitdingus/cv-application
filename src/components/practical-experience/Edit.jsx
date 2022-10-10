@@ -146,6 +146,7 @@ class Edit extends React.Component {
     }
 
     const workExperience = {
+      uuid: uuidv4(),
       companyName,
       jobTitle,
       beginDate,

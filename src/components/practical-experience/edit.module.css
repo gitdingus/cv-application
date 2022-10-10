@@ -1,6 +1,6 @@
 .practicalExperienceForm {
   display: grid;
-  grid-template-columns: 150px 1fr 25px;
+  grid-template-columns: 150px 1fr auto;
   gap: 13px;
   
   align-items: end;
@@ -9,6 +9,7 @@
 
 .practicalExperienceForm label {
   grid-column: 1 / 2;
+  text-align: right;
 }
 
 .practicalExperienceForm .responsibilitiesLabel {
@@ -21,15 +22,25 @@
   margin-top: 6px;
 }
 
+.practicalExperienceForm .responsibilities {
+  grid-column: 2 / 3;
+}
+
+.practicalExperienceForm .responsibility {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+}
+
+.practicalExperienceForm .addExperienceButton{
+  grid-column: 2 / 3;
+}
+
 .practicalExperienceForm .error{
   grid-column: 2 / 3;
   color: rgba(255, 0, 0, 1);
   font-size: 14px;
   margin-left: 18px;
-  /* 
-    uncomment when programming error checking
-    display: none; 
-  */
+  display: none; 
 
 }
 

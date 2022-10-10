@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './edit.module.css';
 import addButton from '../plus.svg';
@@ -97,6 +98,9 @@ class Edit extends React.Component {
 
   addExperience() {
     const {
+      addWorkExperience,
+    } = this.props;
+
       responsibilities,
     } = this.state;
 
@@ -280,5 +284,13 @@ class Edit extends React.Component {
     );
   }
 }
+
+Edit.propTypes = {
+  addWorkExperience: PropTypes.func,
+};
+
+Edit.defaultProps = {
+  addWorkExperience: () => {},
+};
 
 export default Edit;

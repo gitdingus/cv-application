@@ -33,6 +33,7 @@
 
 .practicalExperienceForm .addExperienceButton{
   grid-column: 2 / 3;
+  padding: 5px 20px;
 }
 
 .practicalExperienceForm .error{

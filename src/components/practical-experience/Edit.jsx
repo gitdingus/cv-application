@@ -30,6 +30,7 @@ class Edit extends React.Component {
 
     this.addResponsibility = this.addResponsibility.bind(this);
     this.addExperience = this.addExperience.bind(this);
+    this.removeResponsibility = this.removeResponsibility.bind(this);
   }
 
   inputChanged(field, target) {
@@ -75,6 +76,23 @@ class Edit extends React.Component {
     }));
 
     this.responsibilitesTextArea.current.focus();
+  }
+
+  editResponsibility(targetUuid) {
+    const { responsibilities } = this.state;
+    const { responsibility } = responsibilities.find((x) => x.uuid === targetUuid);
+
+    this.setState({
+      responsibility,
+    });
+
+    this.removeResponsibility(targetUuid);
+  }
+
+  removeResponsibility(uuid) {
+    this.setState((prevState) => ({
+      responsibilities: prevState.responsibilities.filter((item) => item.uuid !== uuid),
+    }));
   }
 
   addExperience() {
@@ -233,8 +251,8 @@ class Edit extends React.Component {
               responsibilities.map((x) => (
                 <li key={x.uuid} className={styles.responsibility}>
                   {x.responsibility}
-                  <button className="svg-button" type="button"><img src={editButton} alt="Edit Responsibility" /></button>
-                  <button className="svg-button" type="button"><img src={trashButton} alt="Remove Responsibility" /></button>
+                  <button className="svg-button" type="button" onClick={() => this.editResponsibility(x.uuid)}><img src={editButton} alt="Edit Responsibility" /></button>
+                  <button className="svg-button" type="button" onClick={() => this.removeResponsibility(x.uuid)}><img src={trashButton} alt="Remove Responsibility" /></button>
                 </li>
               ))
             }

@@ -101,6 +101,11 @@ class Edit extends React.Component {
       addWorkExperience,
     } = this.props;
 
+    const {
+      companyName,
+      jobTitle,
+      beginDate,
+      endDate,
       responsibilities,
     } = this.state;
 
@@ -140,7 +145,15 @@ class Edit extends React.Component {
       return;
     }
 
-    console.log('valid bingbong');
+    const workExperience = {
+      companyName,
+      jobTitle,
+      beginDate,
+      endDate,
+      responsibilities,
+    };
+
+    addWorkExperience(workExperience);
   }
 
   render() {

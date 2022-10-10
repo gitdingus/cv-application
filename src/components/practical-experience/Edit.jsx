@@ -154,6 +154,14 @@ class Edit extends React.Component {
     };
 
     addWorkExperience(workExperience);
+
+    this.setState({
+      companyName: '',
+      jobTitle: '',
+      beginDate: '',
+      endDate: '',
+      responsibilities: [],
+    });
   }
 
   render() {

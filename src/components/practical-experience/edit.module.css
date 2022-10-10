@@ -1,0 +1,38 @@
+.practicalExperienceForm {
+  display: grid;
+  grid-template-columns: 150px 1fr 25px;
+  gap: 13px;
+  
+  align-items: end;
+  width: clamp(450px, 60%, 650px);
+}
+
+.practicalExperienceForm label {
+  grid-column: 1 / 2;
+}
+
+.practicalExperienceForm .responsibilitiesLabel {
+  align-self: start;
+  margin-top: 6px;
+}
+
+.practicalExperienceForm .addResponsibilitiesButton {
+  align-self: start;
+  margin-top: 6px;
+}
+
+.practicalExperienceForm .error{
+  grid-column: 2 / 3;
+  color: rgba(255, 0, 0, 1);
+  font-size: 14px;
+  margin-left: 18px;
+  /* 
+    uncomment when programming error checking
+    display: none; 
+  */
+
+}
+
+.practicalExperienceForm .error.active{
+  display: block;
+}

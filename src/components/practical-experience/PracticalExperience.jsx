@@ -1,7 +1,6 @@
 import React from 'react';
 import Edit from './Edit.jsx';
 import Display from './Display.jsx';
-import styles from './practical-experience.module.css';
 import '../app.css';
 
 class PracticalExperience extends React.Component {
@@ -47,7 +46,6 @@ class PracticalExperience extends React.Component {
   }
 
   removeWorkExperience(uuid) {
-    console.log('removing work experience', uuid);
     this.setState((prevState) => ({
       workExperience: prevState.workExperience.filter((exp) => exp.uuid !== uuid),
     }));
@@ -62,9 +60,8 @@ class PracticalExperience extends React.Component {
   editWorkExperience(uuid) {
     const { workExperience } = this.state;
     const currentJob = workExperience.find((job) => job.uuid === uuid);
-    console.log(currentJob);
     const {
-      companyName, jobTitle, beginDate, endDate, responsibilities 
+      companyName, jobTitle, beginDate, endDate, responsibilities,
     } = currentJob;
 
     this.setState({
@@ -78,7 +75,7 @@ class PracticalExperience extends React.Component {
     this.removeWorkExperience(currentJob.uuid);
   }
 
-  editResponsibility(uuid) { 
+  editResponsibility(uuid) {
     const { responsibilities } = this.state;
     const { responsibility } = responsibilities.find((x) => x.uuid === uuid);
 

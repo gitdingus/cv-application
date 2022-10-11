@@ -16,12 +16,6 @@ class Edit extends React.Component {
     this.endDateInput = React.createRef();
     this.responsibilitesTextArea = React.createRef();
     this.state = {
-      companyName: '',
-      jobTitle: '',
-      beginDate: '',
-      endDate: '',
-      responsibility: '',
-      responsibilities: [],
       invalidCompanyName: false,
       invalidJobTitle: false,
       invalidBeginDate: false,
@@ -35,9 +29,9 @@ class Edit extends React.Component {
   }
 
   inputChanged(field, target) {
-    this.setState({
-      [field]: target.value,
-    });
+    const { inputChanged } = this.props;
+
+    inputChanged(field, target.value);
 
     switch (field) {
       case 'companyName':
@@ -65,49 +59,40 @@ class Edit extends React.Component {
   }
 
   addResponsibility() {
-    const { responsibility } = this.state;
+    const { addResponsibility, responsibility } = this.props;
     const newResponsibility = {
       uuid: uuidv4(),
       responsibility,
     };
-    this.setState((prevState) => ({
-      responsibilities: prevState.responsibilities.concat([newResponsibility]),
-      responsibility: '',
+
+    addResponsibility(newResponsibility);
+
+    this.setState({
       responsibilitiesEmpty: false,
-    }));
+    });
 
     this.responsibilitesTextArea.current.focus();
   }
 
   editResponsibility(targetUuid) {
-    const { responsibilities } = this.state;
-    const { responsibility } = responsibilities.find((x) => x.uuid === targetUuid);
-
-    this.setState({
-      responsibility,
-    });
-
-    this.removeResponsibility(targetUuid);
+    const { editResponsibility } = this.props;
+    editResponsibility(targetUuid);
   }
 
   removeResponsibility(uuid) {
-    this.setState((prevState) => ({
-      responsibilities: prevState.responsibilities.filter((item) => item.uuid !== uuid),
-    }));
+    const { removeResponsibility } = this.props;
+    removeResponsibility(uuid);
   }
 
   addExperience() {
-    const {
-      addWorkExperience,
-    } = this.props;
-
     const {
       companyName,
       jobTitle,
       beginDate,
       endDate,
       responsibilities,
-    } = this.state;
+      addWorkExperience,
+    } = this.props;
 
     let problems = false;
     if (this.companyNameInput.current.checkValidity() !== true) {
@@ -155,17 +140,17 @@ class Edit extends React.Component {
     };
 
     addWorkExperience(workExperience);
-
-    this.setState({
-      companyName: '',
-      jobTitle: '',
-      beginDate: '',
-      endDate: '',
-      responsibilities: [],
-    });
   }
 
   render() {
+    const {
+      invalidCompanyName,
+      invalidJobTitle,
+      invalidBeginDate,
+      invalidEndDate,
+      responsibilitiesEmpty,
+    } = this.state;
+
     const {
       companyName,
       jobTitle,
@@ -173,12 +158,8 @@ class Edit extends React.Component {
       endDate,
       responsibility,
       responsibilities,
-      invalidCompanyName,
-      invalidJobTitle,
-      invalidBeginDate,
-      invalidEndDate,
-      responsibilitiesEmpty,
-    } = this.state;
+    } = this.props;
+
     return (
       <div>
         <form className={styles.practicalExperienceForm}>
@@ -309,10 +290,33 @@ class Edit extends React.Component {
 
 Edit.propTypes = {
   addWorkExperience: PropTypes.func,
+  addResponsibility: PropTypes.func,
+  removeResponsibility: PropTypes.func,
+  editResponsibility: PropTypes.func,
+  inputChanged: PropTypes.func,
+  companyName: PropTypes.string,
+  jobTitle: PropTypes.string,
+  beginDate: PropTypes.string,
+  endDate: PropTypes.string,
+  responsibility: PropTypes.string,
+  responsibilities: PropTypes.arrayOf(PropTypes.shape({
+    uuid: PropTypes.string,
+    responsibility: PropTypes.string,
+  })),
 };
 
 Edit.defaultProps = {
   addWorkExperience: () => {},
+  addResponsibility: () => {},
+  removeResponsibility: () => {},
+  editResponsibility: () => {},
+  inputChanged: () => {},
+  companyName: '',
+  jobTitle: '',
+  beginDate: '',
+  endDate: '',
+  responsibility: '',
+  responsibilities: [],
 };
 
 export default Edit;

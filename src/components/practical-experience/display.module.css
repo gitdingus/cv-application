@@ -1,0 +1,25 @@
+.practicalExperience .job {
+  display: flex;
+  flex-direction: column;
+  width: clamp(450px, 60%, 800px);
+}
+.practicalExperience .jobHeadline {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 5px;
+}
+
+.practicalExperience .companyName {
+  /* font-size: 18px; */
+  padding: 0 20px;
+}
+
+.practicalExperience .jobTitle {
+  /* font-size: 16px; */
+  flex: 1
+}
+
+.practicalExperience .responsibility {
+  margin-bottom: 10px;
+}

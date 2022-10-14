@@ -85,18 +85,27 @@ class App extends React.Component {
           }
         </div>
         <div className="education-experience">
+          <h1>Education</h1>
           {
-            educationExperience.map((exp) => (
-              <p key={exp.uuid}>
-                <span>{exp.university}</span>
-                <span>{exp.areaOfStudy}</span>
-                <span>{exp.degreeEarned}</span>
-                <span>{exp.dateAcquired}</span>
-              </p>
-            ))
+            educationExperience.map((exp) => {
+              const {
+                uuid,
+                university,
+                areaOfStudy,
+                degreeEarned,
+                dateAcquired,
+              } = exp;
+              return (
+                <div key={uuid}>
+                  <h2>{university}</h2>
+                  <p>{`${dateAcquired} - ${degreeEarned} in ${areaOfStudy}`}</p>
+                </div>
+              );
+            })
           }
         </div>
         <div className="practical-experience">
+          <h1>Practical Experience</h1>
           {
             practicalExperience.map((exp) => {
               const {
@@ -104,13 +113,13 @@ class App extends React.Component {
               } = exp;
               return (
                 <div key={exp.uuid}>
+                  <h2>{companyName}</h2>
                   <p>
-                    <span>{beginDate}</span>
-                    <span>{endDate}</span>
-                    <span>{companyName}</span>
-                    <span>{jobTitle}</span>
+                    <span className="dates">{`${beginDate} - ${endDate}`}</span>
+                    <span className="job-title">{jobTitle}</span>
                   </p>
-                  <ul>
+                  <h3>Primary Duties</h3>
+                  <ul className="responsibilities">
                     {
                       responsibilities.map((resp) => {
                         const { uuid, responsibility } = resp;

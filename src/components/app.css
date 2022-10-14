@@ -48,3 +48,68 @@
 .svg-button img {
   width: 22px;
 }
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-info p {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.contact-info p span:first-child {
+  margin-right: 6px;
+
+}
+.contact-info p:first-child{
+  font-weight: bold;
+}
+
+.education-experience {
+  margin-bottom: 30px;
+}
+.education-experience h1,
+.practical-experience h1 {
+  font-size: 20px;
+}
+
+.education-experience div {
+  margin: 0 30px;
+}
+.practical-experience div {
+  margin: 0 30px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid black;
+}
+
+.education-experience div h2,
+.practical-experience div h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.practical-experience div h3 {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.practical-experience div ul {
+  margin: 0;
+  list-style-type: circle;
+}
+
+.education-experience div p {
+  margin-left: 35px;
+}
+.practical-experience div h2+p{
+  margin: 0;
+
+  display: flex;
+  gap: 5px;
+}
+
+

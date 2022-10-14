@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Edit from './Edit.jsx';
 import Display from './Display.jsx';
 import styles from './contact-info.module.css';
@@ -19,10 +20,19 @@ class ContactInfo extends React.Component {
   }
 
   updateContactInfo(recievedState) {
-    this.setState({ name: recievedState.name });
-    this.setState({ email: recievedState.email });
-    this.setState({ phoneList: recievedState.phoneList });
-    this.setState({ mode: 'display' });
+    const { sendContactInfo } = this.props;
+
+    this.setState({
+      name: recievedState.name,
+      email: recievedState.email,
+      phoneList: recievedState.phoneList,
+      mode: 'display',
+    }, () => {
+      const { name, email, phoneList } = recievedState;
+      sendContactInfo({
+        name, email, phoneList,
+      });
+    });
   }
 
   enterEditMode() {
@@ -59,4 +69,13 @@ class ContactInfo extends React.Component {
     );
   }
 }
+
+ContactInfo.propTypes = {
+  sendContactInfo: PropTypes.func,
+};
+
+ContactInfo.defaultProps = {
+  sendContactInfo: () => {},
+};
+
 export default ContactInfo;

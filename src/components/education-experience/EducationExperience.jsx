@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import Edit from './Edit.jsx';
 import Display from './Display.jsx';
@@ -28,6 +29,7 @@ class EducationExperience extends React.Component {
       dateAcquired,
     } = this.state;
 
+    const { sendEducationExperience } = this.props;
     const newItem = {
       uuid: uuidv4(),
       university,
@@ -44,7 +46,10 @@ class EducationExperience extends React.Component {
         degreeEarned: '',
         dateAcquired: '',
       }
-    ));
+    ), () => {
+      const { eduList } = this.state;
+      sendEducationExperience(eduList);
+    });
   }
 
   removeEducationExperience(uuid) {
@@ -97,5 +102,13 @@ class EducationExperience extends React.Component {
     );
   }
 }
+
+EducationExperience.propTypes = {
+  sendEducationExperience: PropTypes.func,
+};
+
+EducationExperience.defaultProps = {
+  sendEducationExperience: () => {},
+};
 
 export default EducationExperience;

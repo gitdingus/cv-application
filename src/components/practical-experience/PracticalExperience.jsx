@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Edit from './Edit.jsx';
 import Display from './Display.jsx';
 import '../app.css';
@@ -35,7 +36,11 @@ class PracticalExperience extends React.Component {
       endDate: '',
       responsibility: '',
       responsibilities: [],
-    }));
+    }), () => {
+      const { sendPracticalExperience } = this.props;
+      const { workExperience } = this.state;
+      sendPracticalExperience(workExperience);
+    });
   }
 
   addResponsibility(data) {
@@ -128,5 +133,13 @@ class PracticalExperience extends React.Component {
     );
   }
 }
+
+PracticalExperience.propTypes = {
+  sendPracticalExperience: PropTypes.func,
+};
+
+PracticalExperience.defaultProps = {
+  sendPracticalExperience: () => {},
+};
 
 export default PracticalExperience;
